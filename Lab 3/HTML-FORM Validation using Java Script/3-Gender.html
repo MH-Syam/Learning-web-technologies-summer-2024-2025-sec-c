@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 3 - Gender Selection</title>
+</head>
+<body>
+    <h1>Task 3 - Gender</h1>
+    <form method="post" action="test.html" onsubmit="return validateGender()">
+        <fieldset>
+            <input type="radio" name="gender" id="male" value="male"> Male<br>
+            <input type="radio" name="gender" id="female" value="female"> Female<br>
+            <input type="radio" name="gender" id="others" value="others"> Others<br>
+            <p id="genderError" style="color:red;"></p>
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+
+    <script>
+        function validateGender() {
+            const male = document.getElementById("male").checked;
+            const female = document.getElementById("female").checked;
+            const others = document.getElementById("others").checked;
+            const error = document.getElementById("genderError");
+
+            if (!male && !female && !others) {
+                error.innerHTML = "Please select your gender";
+                return false;
+            } else {
+                error.innerHTML = "";
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>

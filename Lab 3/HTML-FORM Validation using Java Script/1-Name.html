@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 1 - Name Validation</title>
+</head>
+<body>
+    <h1>Task 1 - Name</h1>
+    <form method="post" action="test.html" onsubmit="return validateName()">
+        <fieldset>
+            Name: <input type="text" id="name" onblur="checkName()">
+            <p id="nameError"></p>
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+
+    <script>
+        let nameInput = "";
+        let nameError = document.getElementById("nameError");
+
+        function checkName() {
+            nameInput = document.getElementById("name").value;
+            let words = nameInput.trim().split(" ");
+            let startsWithLetter = /^[a-zA-Z]/.test(nameInput);
+            let validChars = /^[a-zA-Z .-]+$/.test(nameInput);
+
+            if (nameInput === "") {
+                nameError.innerHTML = "Name cannot be empty";
+                nameError.style.color = "red";
+            } else if (words.length < 2) {
+                nameError.innerHTML = "Name must contain at least two words";
+                nameError.style.color = "red";
+            } else if (!startsWithLetter) {
+                nameError.innerHTML = "Name must start with a letter";
+                nameError.style.color = "red";
+            } else if (!validChars) {
+                nameError.innerHTML = "Name can contain only letters, dot(.) or dash(-)";
+                nameError.style.color = "red";
+            } else {
+                nameError.innerHTML = "";
+            }
+        }
+
+        function validateName() {
+            checkName();
+            return nameError.innerHTML === "";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 4 - Date Validation with Calendar</title>
+</head>
+<body>
+    <h1>Task 4 - Date</h1>
+    <form method="post" action="test.html" onsubmit="return validateDate()">
+        <fieldset>
+            Date of Birth: 
+            <input type="date" id="dob" min="1900-01-01" max="2016-12-31" onblur="checkDate()">
+            <p id="dateError"></p>
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+
+    <script>
+        let dateError = document.getElementById("dateError");
+
+        function checkDate() {
+            let dob = document.getElementById("dob").value;
+
+            if (dob === "") {
+                dateError.innerHTML = "Date cannot be empty";
+                dateError.style.color = "red";
+            } else {
+                let selectedDate = new Date(dob);
+                let minDate = new Date("1900-01-01");
+                let maxDate = new Date("2016-12-31");
+
+                if (selectedDate < minDate || selectedDate > maxDate) {
+                    dateError.innerHTML = "Date must be between 1900 and 2016";
+                    dateError.style.color = "red";
+                } else {
+                    dateError.innerHTML = "";
+                }
+            }
+        }
+
+        function validateDate() {
+            checkDate();
+            return dateError.innerHTML === "";
+        }
+    </script>
+</body>
+</html>

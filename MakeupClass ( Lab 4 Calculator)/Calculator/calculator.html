@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Calculator</title>
+  <style>
+    body {
+      background: #f8f8f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .calculator {
+      background: #fffdfa;
+      padding: 30px;
+      border-radius: 10px;
+      width: 350px;
+      border: 1px solid #ddd;
+    }
+
+    .display {
+      width: 100%;
+      height: 50px;
+      font-size: 2em;
+      margin-bottom: 15px;
+      text-align: right;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #f8f8f8;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      padding: 18px;
+      font-size: 1.3em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #f3f3f3;
+      cursor: pointer;
+    }
+
+    button:active {
+      background: #e0e0e0;
+    }
+
+    .operator {
+      background: #ffe4b2;
+    }
+
+    .equal {
+      background: #b2ffd6;
+      grid-column: span 2;
+    }
+
+    .clear {
+      background: #ffb2b2;
+      grid-column: span 2;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="calculator">
+    <input type="text" class="display" id="display" readonly>
+    <div class="buttons">
+      <button onclick="add('7')">7</button>
+      <button onclick="add('8')">8</button>
+      <button onclick="add('9')">9</button>
+      <button class="operator" onclick="add('/')">÷</button>
+      <button onclick="add('4')">4</button>
+      <button onclick="add('5')">5</button>
+      <button onclick="add('6')">6</button>
+      <button class="operator" onclick="add('*')">×</button>
+      <button onclick="add('1')">1</button>
+      <button onclick="add('2')">2</button>
+      <button onclick="add('3')">3</button>
+      <button class="operator" onclick="add('-')">−</button>
+      <button onclick="add('0')">0</button>
+      <button onclick="add('.')">.</button>
+      <button class="operator" onclick="add('+')">+</button>
+      <button class="clear" onclick="clearDisplay()">Clear</button>
+      <button class="equal" onclick="calculate()">Calculate</button>
+    </div>
+  </div>
+  <script>
+    function add(char) {
+
+      let d = document.getElementById('display');
+      if (char === '*') d.value += '×';
+      else if (char === '/') d.value += '÷';
+      else d.value += char;
+    }
+
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+
+    function calculate() {
+      let exp = document.getElementById('display').value;
+      exp = exp.replace(/×/g, '*').replace(/÷/g, '/');
+      try {
+        document.getElementById('display').value = eval(exp);
+      } catch {
+        document.getElementById('display').value = 'Error';
+      }
+    }
+  </script>
+</body>
+
+</html>

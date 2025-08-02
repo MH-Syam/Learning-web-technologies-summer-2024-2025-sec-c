@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 7 - User ID & Profile Picture</title>
+</head>
+<body>
+    <h1>Task 7 - Upload Profile Picture</h1>
+    <form method="post" action="test.html" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <fieldset>
+            User ID: <input type="text" id="userid" onblur="checkUserId()"><br><br>
+            Profile Picture: <input type="file" id="picture" onblur="checkPicture()"><br>
+            <p id="formError"></p>
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+
+    <script>
+        function checkUserId() {
+            let userid = document.getElementById("userid").value;
+            let error = document.getElementById("formError");
+
+            if (userid === "" || isNaN(userid) || parseInt(userid) <= 0) {
+                error.innerHTML = "User ID must be a positive number";
+                error.style.color = "red";
+                return false;
+            } else {
+                error.innerHTML = "";
+                return true;
+            }
+        }
+
+        function checkPicture() {
+            let file = document.getElementById("picture").value;
+            let error = document.getElementById("formError");
+
+            if (file === "") {
+                error.innerHTML = "Please upload a profile picture";
+                error.style.color = "red";
+                return false;
+            } else {
+                error.innerHTML = "";
+                return true;
+            }
+        }
+
+        function validateForm() {
+            let idOk = checkUserId();
+            let picOk = checkPicture();
+            return idOk && picOk && document.getElementById("formError").innerHTML === "";
+        }
+    </script>
+</body>
+</html>

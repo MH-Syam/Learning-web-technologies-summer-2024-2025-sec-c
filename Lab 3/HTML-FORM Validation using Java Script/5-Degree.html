@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 5 - Degree Selection</title>
+</head>
+<body>
+    <h1>Task 5 - Degree</h1>
+    <form method="post" action="test.html" onsubmit="return validateDegree()">
+        <fieldset>
+            <input type="checkbox" name="degree" id="ssc"> SSC <br>
+            <input type="checkbox" name="degree" id="hsc"> HSC <br>
+            <input type="checkbox" name="degree" id="bsc"> B.Sc <br>
+            <p id="degreeError"></p>
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+
+    <script>
+        function validateDegree() {
+            let ssc = document.getElementById("ssc").checked;
+            let hsc = document.getElementById("hsc").checked;
+            let bsc = document.getElementById("bsc").checked;
+            let error = document.getElementById("degreeError");
+
+            if (!ssc && !hsc && !bsc) {
+                error.innerHTML = "Please select at least one degree";
+                error.style.color = "red";
+                return false;
+            } else {
+                error.innerHTML = "";
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>
